@@ -1,0 +1,12 @@
+Created Student Student: John Doe
+Created Student Student: Alice Smith
+Created Student Student: Bob Johnson
+Destroyed Student Student: Bob Johnson
+Destroyed Student Student: Alice Smith
+Destroyed Student Student: John Doe
+Created Student Student: John Doe
+Created Student Student: Alice Smith
+Created Student Student: Bob Johnson
+Destroyed Student Student: Bob Johnson
+Destroyed Student Student: Alice Smith
+Destroyed Student Student: John Doe

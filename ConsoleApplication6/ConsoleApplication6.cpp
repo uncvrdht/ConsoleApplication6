@@ -167,38 +167,24 @@ private:
 };
 
 int main() {
+    // Создаем и заполняем исходную группу
     Group group1("Group A", Specialization::ComputerScience, 2);
-    Group group2("Group B", Specialization::Physics, 3);
 
     group1.AddStudent(Student("John", "Doe"));
     group1.AddStudent(Student("Alice", "Smith"));
     group1.AddStudent(Student("Bob", "Johnson"));
 
-    group2.AddStudent(Student("Mary", "Wilson"));
-    group2.AddStudent(Student("David", "Brown"));
+    // Создаем копию группы с использованием конструктора копирования
+    Group group1Copy = group1;
 
-    group1.DisplayGroup();
-    group2.DisplayGroup();
+    // Изменяем оригинальную группу
+    group1.AddStudent(Student("Charlie", "Brown"));
 
-    group1.MergeGroups(group2);
-    cout << "After merging:" << endl;
-    group1.DisplayGroup();
-    group2.DisplayGroup(); // Группа 2 теперь пуста.
-
-    group1.TransferStudent(group2, 0);
-    cout << "After transferring a student:" << endl;
-    group1.DisplayGroup();
-    group2.DisplayGroup();
-
-    group1.ExpelFailedStudents();
-    cout << "After expelling failed students:" << endl;
+    cout << "Original Group:" << endl;
     group1.DisplayGroup();
 
-    group2.AddStudent(Student("Eve", "Taylor"));
-    group2.AddStudent(Student("Grace", "Anderson"));
-    group2.ExpelStudentWithLowestAverage();
-    cout << "After expelling student with the lowest average:" << endl;
-    group2.DisplayGroup();
+    cout << "\nCopy of Group:" << endl;
+    group1Copy.DisplayGroup();
 
     return 0;
 }
