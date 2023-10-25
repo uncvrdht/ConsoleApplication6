@@ -13,7 +13,17 @@ enum class Specialization {
 
 class Student {
 public:
-    Student(string name, string lastName) : name(name), lastName(lastName) {}
+    Student(string name, string lastName) : name(name), lastName(lastName) {
+        if (studentCount >= MAX_STUDENTS) {
+            throw runtime_error("Max student limit reached.");
+        }
+        ++studentCount;
+    }
+
+    static int GetStudentCount() {
+        return studentCount;
+    }
+
 
     string GetName() const {
         return name;
@@ -26,7 +36,11 @@ public:
 private:
     string name;
     string lastName;
+    static int studentCount;
+    static const int MAX_STUDENTS = 15; // Максимальное количество студентов
 };
+
+int Student::studentCount = 0;
 
 class Group {
 public:
@@ -52,6 +66,10 @@ public:
             delete students[i];
         }
         delete[] students;
+    }
+
+    static int GetGroupCount() {
+        return groupCount;
     }
 
     string GetGroupName() const {
@@ -164,7 +182,10 @@ private:
     int course;
     Student** students;
     int studentCount;
+    static int groupCount; // Статическое поле для подсчета групп
 };
+
+int Group::groupCount = 0;
 
 int main() {
     // Создаем и заполняем исходную группу
@@ -188,3 +209,21 @@ int main() {
 
     return 0;
 }
+
+/*
+
+Счетчик студентов:
+
+Я добавил счетчик studentCount в класс Student, чтобы отслеживать, сколько студентов уже создано.
+Также, создал метод GetStudentCount, который позволяет узнать, сколько студентов я уже создал.
+Если при создании нового студента уже есть 15 студентов (максимум), то мой код выбросит ошибку.
+
+Счетчик групп:
+
+В классе Group, я внес изменения, чтобы знать, сколько групп уже создано.
+Добавил метод GetGroupCount, который помогает узнать, сколько групп сейчас существует.
+Ограничение на количество студентов:
+
+Я добавил проверку в конструктор класса Student, чтобы удостовериться, что не создается больше студентов, чем разрешено (15 студентов). Если такое происходит, выдает ошибку.
+
+*/
